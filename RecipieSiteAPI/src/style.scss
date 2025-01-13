@@ -103,15 +103,19 @@ header {
   }
   
   button.menu {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
+    height: 100%;
+    padding-bottom: 15px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     position: relative;
+    
     transition: all 0.3s ease-in-out;
   }
   
@@ -119,7 +123,7 @@ header {
   .dropdown-menu {
     display: none;
     position: absolute;
-    top: 133%;
+    top: 100%;
     left: -15px;
     z-index: 1;
     opacity: 0;
@@ -154,7 +158,7 @@ header {
   
   /* Aktiv hover-effekt för dropdown-items */
   .dropdown-menu a:hover {
-    background-color: $border-color;  /* Ändra bakgrund på hover */
+    margin-left: 10px;  /* Ändra bakgrund på hover */
   }
   
   /* Hover-effekt för knappen */
@@ -170,7 +174,6 @@ main {
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
-  justify-content: center;
   overflow-y: auto;
   background-image: url('images/woodenBG.jpg');
   background-size: 100%;
@@ -179,9 +182,9 @@ main {
 
   #hero {
     display: flex;
+    margin-top: 10%;
     flex-wrap: nowrap;
     flex-direction: column;
-    justify-content: center;
     width: 100%;
     
     .hero-title {
@@ -211,7 +214,6 @@ main {
       position: relative;
       height: 340px;
       display: grid;
-      margin-top: 10%;
       grid-template-columns: 1fr 2fr;
       justify-content: center;
       background: linear-gradient(0.25turn, #604F45AD, #755949AD, #4F423AAD);      
@@ -242,35 +244,32 @@ main {
         background-size: cover;
         background-position: center;
         background-image: url(images/food.jpg);
-          animation: move-scale 5s infinite alternate ease-in-out;
-          animation: scaling 30s infinite alternate ease-in-out;
+        background-size: cover;
+        background-repeat: no-repeat;
+          animation: 
+          move-scale 15s infinite alternate ease-in-out;
         }
 
         @keyframes move-scale {
           0% {
-            transform: translate(0)
-            ;
+            transform: translate(0) scale(1);
+          }
+          25% {
+            transform: translate(10px) scale(1.1);
           }
           50% {
-            transform: translate(20px);
+            transform: translate(5px) scale(1.2)  
+          }
+          75% {
+            transform: translate(10px) scale(1.1);
           }
           100% {
-            transform: translate(-35px);
+            transform: translate(-10px) scale(1)
           }
 
       }
 
-        @keyframes scaling {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.1);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
+  
 
       
     } 
