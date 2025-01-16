@@ -1,4 +1,5 @@
-export type Root = {
+export namespace AllTypes {
+  export type Root = {
   meals: Meal[]
 }
 
@@ -57,3 +58,10 @@ export type Meal = {
   strCreativeCommonsConfirmed: any
   dateModified: any
 }
+}
+
+export interface Meal {
+  strMeal: string;
+  strMealThumb: string;
+}
+

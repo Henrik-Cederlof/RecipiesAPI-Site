@@ -1,0 +1,57 @@
+@use './colors' as color;
+@use './fonts' as font;
+
+button {
+  all: unset;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: font.$primary-font;
+  font-weight: bold;
+  text-shadow: 0px 4px 4px rgb(53, 46, 40);
+  color: white;
+  padding: 0;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+button.menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 100%;
+  padding-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  
+  transition: all 0.3s ease-in-out;
+}
+
+/* Dold dropdown */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -15px;
+  z-index: 1;
+  opacity: 0;
+  background-color: color.$primary-color;
+  border-bottom: 3px solid color.$border-color;
+  border-left: 3px solid color.$border-color;
+  border-right: 3px solid color.$border-color;
+  border-radius: 0px 0px 50px 0px;
+  transform: translateY(-10px);  
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Visa dropdown när knappen är hovered */
+button.menu:hover .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  flex-direction: column;
+  transform: translateY(0);  
+}

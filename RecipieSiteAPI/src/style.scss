@@ -1,24 +1,21 @@
+@use './components/buttons.scss' as button;
+@use './components/colors.scss' as color;
+@use './components/fonts.scss' as font;
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&family=Instrument+Serif:wght@400;700&display=swap');
 
-$primary-color: #786154;
-$hover-text-color: #3C91E6;
-$border-color: rgba(255, 255, 255, 1);
-$primary-font: 'Inra Sans', sans-serif;
-$slogan-font: 'Instrument Serif', sans-serif;
-
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   height: 200vh;
   width: 100vw;
   display: grid;
-  grid-template-rows: auto 1fr auto; 
-  grid-template-columns:1fr 1fr 1fr; 
-  grid-template-areas: 
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
     "header header header"
     "main main main"
     "footer footer footer";
@@ -26,43 +23,39 @@ body {
 }
 
 header {
-  top: 100;
   position: relative;
   display: grid;
   grid-template-columns: 1fr auto auto auto 1fr;
-  grid-template-areas: 
-    ". logo slogan buttons .";
+  grid-template-areas: ". logo slogan buttons .";
   width: 100%;
+  height: auto;
   grid-area: header;
-  background-color: $primary-color;
-  border-top: 3px solid $border-color;
-  border-bottom: 3px solid $border-color;
-  
-  #header-logo{
+  background-color: color.$primary-color;
+  border-top: 2px solid color.$border-color;
+  border-bottom: 1px solid color.$border-color;
+  z-index: 3;
+
+  #header-logo {
     position: absolute;
-    z-index: 1;
-    top: 20px;
-    right: 10px;
-    grid-area: logo; 
-    width: 150px;
-    height: 150px;
-    background-color: $primary-color;
+    border: 3px solid color.$border-color;
+    z-index: 0;
+    top:150%;
+    width: 250px;
+    height: 250px;
     background-image: url('images/logo/logo_white.png');
+    opacity: 20%;
     background-size: cover;
     background-position: center;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    transform: rotate(-10deg);
-    color: white;
+    transform: rotate(-20deg);
     font-size: 2em;
     font-weight: bold;
-    border: 3px solid $border-color;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
-
-    
-  }
   
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
+  }
+
   #slogan {
     grid-area: slogan;
     min-width: 300px;
@@ -70,103 +63,44 @@ header {
     margin-right: 200px;
     align-self: center;
     color: white;
-    font-family: $slogan-font;
+    font-family: font.$slogan-font;
     text-shadow: 4px 2px 3px black;
     letter-spacing: 0.1em;
     font-style: italic;
     font-size: 1.8em;
-
   }
 
   #menu-buttons {
-    display: inline-block;
     position: relative;
     grid-area: buttons;
-    display: flex;
+    display: flex; 
     justify-content: center;
     align-self: center;
-    gap: 150px;
+    gap: 100px;
     height: 45px;
   }
-  
-  button {
-    all: unset;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: $primary-font;
-    font-weight: bold;
-    text-shadow: 0px 4px 4px rgb(53, 46, 40);
-    color: white;
-    padding: 0;
-    transition: background-color 0.3s ease;
-    position: relative;
-  }
-  
-  button.menu {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    height: 100%;
-    padding-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    position: relative;
-    
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Dold dropdown */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: -15px;
-    z-index: 1;
-    opacity: 0;
-    background-color: $primary-color;
-    border-bottom: 3px solid $border-color;
-    border-left: 3px solid $border-color;
-    border-right: 3px solid $border-color;
-    border-radius: 0px 0px 50px 0px;
-    transform: translateY(-10px);  /* Ger en liten "lyft" effekt */
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
-  
-  /* Visa dropdown när knappen är hovered */
-  button.menu:hover .dropdown-menu {
-    display: flex;
-    opacity: 1;
-    flex-direction: column;
-    transform: translateY(0);  /* Animerar menyn från -10px till 0 */
-  }
-  
-  /* Styling för dropdown-items */
+
   .dropdown-menu a {
     cursor: pointer;
-    color: white;
+    color: color.$white-color;
     text-decoration: none;
     position: relative;
     margin-left: 5px;
     text-align: start;
-    padding: 10px;  /* Justerat för att få bättre avstånd */
+    padding: 10px;
     letter-spacing: 0.1em;
   }
-  
-  /* Aktiv hover-effekt för dropdown-items */
+
   .dropdown-menu a:hover {
-    margin-left: 10px;  /* Ändra bakgrund på hover */
+    margin-left: 10px;
   }
-  
-  /* Hover-effekt för knappen */
+
   button:hover {
-    color: $hover-text-color;
+    color: color.$hover-text-color;
     transition: all 0.3s ease-in-out;
   }
-}  
+}
+
 
 main {
   grid-area: main;
@@ -180,165 +114,21 @@ main {
   background-position: center;
   background-repeat: repeat-y;
 
-  #hero {
+  #find-taste {
     display: flex;
-    margin-top: 10%;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    width: 100%;
-    
-    .hero-title {
-      position: relative;
-      font-family: $slogan-font;
-      font-style: italic;
-      font-size: 2rem;
-      letter-spacing: 0.1cap;
-      left: 25%;
-      bottom:35px;
-      z-index: 2;
-    }
-    
-    // The text FOOD
-    .hero-title-item {
-      position: relative;
-      font-style: italic;
-      text-align: center;
-      font-size: 5rem;
-      letter-spacing: 0.1cap;
-      -webkit-text-stroke: 1px rgb(66, 47, 21);
-      right: 48%;
-      z-index: 2;
-    }
+    flex-wrap: wrap;
+    flex-direction: row;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    margin-top: 150px;
 
-    .hero-content {
-      position: relative;
-      height: 340px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      justify-content: center;
-      background: linear-gradient(0.25turn, #604F45AD, #755949AD, #4F423AAD);      
-      color: white;
-      text-align: center;
-      font-size: 1.5em;
-      border-top: 3px white solid;
-      border-bottom: 3px white solid;
-      
-      .hero-content-image {
-        position: relative;
-        z-index: 1;
-        left: 100px;
-        bottom: 80px;
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        margin-left: 20%;
-        background-size: cover;
-        background-position: center;
-        border: 6px solid white;
-        overflow: hidden;
-
-        .image-anim {
-        z-index: 0;
-        width: 380px;
-        height: 380px;
-        background-size: cover;
-        background-position: center;
-        background-image: url(images/food.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-          animation: 
-          move-scale 15s infinite alternate ease-in-out;
-        }
-
-        @keyframes move-scale {
-          0% {
-            transform: translate(0) scale(1);
-          }
-          25% {
-            transform: translate(10px) scale(1.1);
-          }
-          50% {
-            transform: translate(5px) scale(1.2)  
-          }
-          75% {
-            transform: translate(10px) scale(1.1);
-          }
-          100% {
-            transform: translate(-10px) scale(1)
-          }
-
-      }
-
-  
-
-      
-    } 
-
-      .hero-content-description {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        justify-content: center;
-        width: 60%;
-        bottom: 80px;
-        margin-left:65px;
-        background-size: cover;
-        background-position: center;
-
-        h2 {
-          align-self: center;
-          font-weight: lighter;
-          font-style: italic;
-          margin-bottom: 15px;
-        }
-        p {
-          align-self: center;
-          font-weight: lighter;
-          font-style: italic;
-          margin-bottom: 15px;
-
-
-        }
-        .btn-go {
-          align-self: flex-end;
-          width: 100px;
-          height: 35px;
-          margin-top: 20px;
-          background-color: #9FD356;
-          color: white;
-          border: 2px white solid;
-          border-radius: 15px;
-          cursor: pointer;
-
-        }
-        .btn-go:hover {
-          transform: scale(1.1);
-        }
-        .btn-go:active {
-          background-color: #C6F388 ;
-        }
-
-      }    
-    }
-    
-    #find-taste {
-      display: flex;
-      flex-wrap: wrap;
+    .card {
       flex-direction: row;
-      grid-template-columns: repeat(4, 1fr);
-      justify-content: center;
-      margin-top: 150px;
-
-
-      .dummy {
-        flex-direction: row;
-        height: 320px;
-        width: 250px;
-        background-color: #786154;
-        border-radius: 25px;
-        margin: 20px;
-
-      }
+      height: 320px;
+      width: 250px;
+      background-color: color.$primary-color;
+      border-radius: 25px;
+      margin: 20px;
     }
   }
 }
@@ -346,11 +136,10 @@ main {
 footer {
   grid-area: footer;
   height: 200px;
-  background-color: $primary-color;
+  background-color: color.$primary-color;
   position: relative;
   bottom: 0;
   width: 100%;
-  border-top: 2px solid white;
-  border-bottom: 2px solid white;
-
+  border-top: 2px solid color.$border-color;
+  border-bottom: 2px solid color.$border-color;
 }
