@@ -1,6 +1,7 @@
 export namespace AllTypes {
   export type Root = {
   meals: Meal[]
+  categories: Category[]
 }
 
 export type Meal = {
@@ -60,7 +61,7 @@ export type Meal = {
 }
 }
 
-export interface Meal {
+export type Meal = {
   strMeal: string;
   strMealThumb: string;
 }
@@ -72,3 +73,9 @@ export type CardData = {
   containderId: string;
 }
 
+export type Category = {
+  idCategory: string
+  strCategory: string
+  strCategoryThumb: string
+  strCategoryDescription: string
+  }
