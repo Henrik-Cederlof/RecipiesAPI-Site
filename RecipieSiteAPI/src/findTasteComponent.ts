@@ -1,18 +1,31 @@
-// findTaste.ts
-export function createCard() {
-  const findTasteContainer = document.getElementById('find-taste') as HTMLDivElement;
+import { CardData } from "./types";
 
-  if (findTasteContainer) {
-    const card: HTMLDivElement = document.createElement('div');
-    card.classList.add('card');
-    card.id  = 'card';
 
-    card.innerHTML = `<p>Detta är ett kort</p>`;
-    
-    findTasteContainer.appendChild(card);
+export const createCard = (data: CardData[], containderId: string): void => {
+
+  const container = document.getElementById(containderId) as HTMLDivElement;
+  if (container) {
+    data.forEach(index => {
+     const card = document.createElement('div') as HTMLDivElement;
+     card.classList.add('card');
+     
+     const cardImage = document.createElement('div') as HTMLDivElement;
+      cardImage.classList.add('card-image');
+
+      const cardTitle = document.createElement('h2') as HTMLDivElement;
+      cardTitle.textContent = index.title;
+
+      const cardText = document.createElement('article') as HTMLDivElement; 
+      cardText.textContent = index.descrtipion;
+
+      card.appendChild(cardTitle)
+      card.appendChild(cardTitle)
+      card.appendChild(cardImage)
+
+      container.appendChild(card);
+     
+    });
   } else {
     console.error('Elementet kunde inte hittas..');
   }
-
-  return findTasteContainer;
 }

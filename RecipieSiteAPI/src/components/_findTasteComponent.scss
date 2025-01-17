@@ -1,0 +1,47 @@
+@use './colors.scss' as color;
+@use './fonts.scss' as font;
+
+* {
+  box-sizing: border-box;
+  }
+
+#main {
+  width: 100%;  
+
+  #card-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 320px;
+    width: 100%;
+    flex-direction: row;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    margin-top: 150px;
+
+    .card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      height: 320px;
+      width: 250px;
+      background-color: color.$primary-color;
+      border-radius: 25px;
+      margin: 20px;
+      box-shadow: 3px 4px 4px 0 rgba(0,0,0,0.8);
+      overflow: hidden;
+      
+      .card-image {
+        position: relative;
+        width: 200px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        background-image: url('../images/food.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}

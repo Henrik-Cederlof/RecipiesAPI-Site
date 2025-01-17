@@ -1,4 +1,3 @@
-import './components/_heroComponent.scss';
 import { Meal } from './types';
 import getMeal from './funtions/getMeal';
 
@@ -9,8 +8,6 @@ export const createHeroComponent = () => {
   heroContent.id = 'hero';
 
   heroContent.innerHTML = `
- 
-
     <div class="hero-content-container">
     <div class="header-text">
      <h1 class="hero-title">GET INSPIRED BY</h1>
@@ -34,10 +31,11 @@ export const createHeroComponent = () => {
       </div>
       </div>`;
 
+heroContent.querySelector('.btn-go')?.addEventListener('click', () => {
+  console.log('Button clicked');
+});
 
-
-
-getMeal().then(meal => {
+getMeal().then( meal => {
   const recipieTitle = heroContent.querySelector('#recipie-title') as HTMLElement;
   const imageCont = heroContent.querySelector('.image-anim') as HTMLImageElement;
 

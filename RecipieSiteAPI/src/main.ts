@@ -1,22 +1,28 @@
 import './style.scss';
 import './components/_heroComponent.scss';
+import './components/_findTasteComponent.scss';
+
 import ctaGoBtn from './animations/ctaGoBtn';
-
 import getMeal from './funtions/getMeal';
-
 import createBtns from './menyButtons';
-import  { createCard }  from './findTasteComponent';
+import { cardData } from './cardData';
+import { createCard }  from './findTasteComponent';
 import { createHeroComponent } from './heroComponent';
-import { get } from 'http';
 
 const main = document.getElementById('main') as HTMLDivElement;
 
+
 if (main) {
   const heroComponent = createHeroComponent();
-  const card = createCard();
+
   main.appendChild(heroComponent);
-  main.appendChild(card);
+  createCard(cardData, 'card-container')
+
+
+  
+
 }
+
 createBtns();
 getMeal();
 

@@ -65,3 +65,10 @@ export interface Meal {
   strMealThumb: string;
 }
 
+export type CardData = {
+  title: string;
+  image: string;
+  descrtipion: string;
+  containderId: string;
+}
+

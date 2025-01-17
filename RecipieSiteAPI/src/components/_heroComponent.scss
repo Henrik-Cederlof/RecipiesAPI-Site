@@ -170,19 +170,16 @@ box-sizing: border-box;
   cursor: pointer;
   overflow: hidden;
   position: relative;
+  tex
 
-  .btn-go:hover {
-    transform: scale(1.1);
-  }
-  .btn-go:active {
-    transform: translateY(2px);
-  }
+
   // Flash effect
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
+    border-radius: 50px;
     width: 200px;
     height: 100%;
     opacity: 0.2;
