@@ -1,4 +1,4 @@
-import { AllTypes, Category } from "../types";
+import { Category, Root } from "../types";
 import '../components/_categoryComponent.scss';
 import { DomElements } from "../domElements";
 
@@ -7,7 +7,7 @@ const categortURL = 'https://www.themealdb.com/api/json/v1/1/categories.php';
 export const getCategories = async () => {
     const url = `${categortURL}`;
     const response = await fetch(url);
-    const data: AllTypes.Root = await response.json() as AllTypes.Root;
+    const data: Root = await response.json() as Root;
     const category: Category[] = data.categories.map((cat) => ({
         idCategory: cat.idCategory,
         strCategory: cat.strCategory,

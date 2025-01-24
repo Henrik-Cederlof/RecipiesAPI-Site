@@ -1,30 +1,53 @@
+import './globalStyles.scss';
 import './style.scss';
 import './components/_heroComponent.scss';
 import './components/_findTasteComponent.scss';
+import './components/_loader.scss';
 
-import ctaGoBtn from './animations/ctaGoBtn';
-import getMeal from './funtions/getMeal';
 import createBtns from './menyButtons';
-import { getCategories, getAllImages } from './funtions/getCategories';
 import { cardData } from './cardData';
-import { createCard }  from './findTasteComponent';
+import { createCardComp }  from './findTasteComponent';
 import { createHeroComponent } from './heroComponent';
 import { DomElements } from './domElements';
+import { aboutUsContainer } from './aboutUs';
+import { recipieComponent } from './pages/recipes';
+import  { getAllMeals, getFullMealInfo }  from './funtions/getRecipies';
+
+
+const header = DomElements.header;
+
+
 const main = DomElements.main;
-const heroComponent = createHeroComponent();
+  const heroContainer = DomElements.main;
+  const cardContainer = DomElements.main;
+
+const aboutMain = DomElements.aboutMain;
+
+const recipesMain = DomElements.recipesMain;
 
 
-if (main) {
+
+
+if(header) {
   createBtns();
-  getAllImages();
-  main.appendChild(heroComponent);  
-  createCard(cardData, 'card-container')
+}
 
-  
+if (main) { 
+  heroContainer.appendChild(createHeroComponent());  
+  cardContainer.appendChild(createCardComp(cardData))
+}
+if (aboutMain) {
+  aboutMain.appendChild(aboutUsContainer);
+}
 
+if (recipesMain) {
+  recipesMain.appendChild(recipieComponent());
 }
 
 
 
-ctaGoBtn('1.5s', '#526d2d', 'white', 'right', 50);
+
+
+
+
 

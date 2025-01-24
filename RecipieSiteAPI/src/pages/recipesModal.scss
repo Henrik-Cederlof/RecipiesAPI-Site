@@ -1,0 +1,40 @@
+@use '../components/colors.scss' as color;
+
+.recipe-modal {
+    /* Använd flexbox för innehållet inuti modalen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    height: auto;
+    max-height: 90vh; 
+    width: 80%; 
+    padding: 4%;
+    border-radius: 25px;
+    border: 5px solid color.$Off-white-color;
+    background-color: color.$primary-color;
+    z-index: 100;
+
+    /* Justering av modal-innehållet */
+    .modal-img {
+        max-width: 30%;
+        height: auto;
+        border-radius: 50%;
+        border: 5px solid color.$Off-white-color;
+    }
+
+    .modal-instructions {
+        color: color.$Off-white-color;
+        font-size: 1.1em;
+    }
+    .modal-title {
+        color: color.$Off-white-color;
+        font-size: 2.5em;
+        text-align: center;
+    }
+}

@@ -1,7 +1,14 @@
-export namespace AllTypes {
+import exp from "constants";
+
   export type Root = {
   meals: Meal[]
   categories: Category[]
+}
+
+
+export type Meals = {
+  strMeal: string;
+  strMealThumb: string;
 }
 
 export type Meal = {
@@ -59,18 +66,13 @@ export type Meal = {
   strCreativeCommonsConfirmed: any
   dateModified: any
 }
-}
 
-export type Meal = {
-  strMeal: string;
-  strMealThumb: string;
-}
+
 
 export type CardData = {
   title: string;
   image: string;
   descrtipion: string;
-  containderId: string;
 }
 
 export type Category = {
@@ -78,4 +80,10 @@ export type Category = {
   strCategory: string
   strCategoryThumb: string
   strCategoryDescription: string
+  }
+
+  export type RecipeMenu = {
+    id: string;
+    name: string;
+    icon: string;
   }

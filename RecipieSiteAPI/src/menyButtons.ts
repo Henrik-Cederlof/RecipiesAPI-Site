@@ -10,7 +10,7 @@ type Button = {
 
 // Array med knappdata
 const buttons: Button[] = [
-  { label: 'HOME', url: '/', action: () => console.log('Home Clicked'), className: 'home' },
+  { label: 'index', url: '/', action: () => console.log('Home Clicked'), className: 'home' },
   { label: 'MENU', url: '/', action: () => console.log('Menu Clicked'), className: 'menu', dropdown: true },
   { label: 'ABOUT', url: '/', action: () => console.log('About Clicked'), className: 'about' },
   { label: 'CONTACT', url: '/', action: () => console.log('Contact Clicked'), className: 'contact' },
@@ -23,10 +23,10 @@ const createBtns = (): void => {
   if (container) {
     buttons.forEach((button) => {
       const btn = document.createElement('button');
-      btn.textContent = button.label; 
+      btn.textContent = button.className.toUpperCase(); 
       btn.classList.add(button.className);
 
-      if(button.dropdown) {
+      if (button.dropdown) {
         // Skapa dropdown-menyn
         const dropdown = document.createElement('div');
         dropdown.classList.add('dropdown-menu');
@@ -35,24 +35,31 @@ const createBtns = (): void => {
         menuItems.forEach((item) => {
           const menuItem = document.createElement('a');
           menuItem.textContent = item;
+          // Direktlänk för enkel navigering
+          menuItem.href = `${item.toLowerCase()}.html`;
           dropdown.appendChild(menuItem);
-          
         });
-        
-        // Lägg till dropdown i knappen
+
+        // Förhindra att dropdown-knappen navigerar bort
+        btn.addEventListener('click', (event) => {
+          event.stopPropagation(); // Stoppar klicket från att bubbla upp
+          dropdown.classList.toggle('show'); // Visa/dölj dropdown
+        });
+
         btn.appendChild(dropdown);
-
-
+      } else {
+        // Vanliga knappar ska omdirigera som tidigare
+        btn.addEventListener('click', () => {
+          window.location.href = `${button.label.toLowerCase()}.html`;
+        });
       }
 
-      // Lägg till en klickhändelse
-      btn.addEventListener('click', button.action);
-
-      // Lägg till knappen i container
       container.appendChild(btn);
     });
+
   }
-}
+};
+
 
 
 export default createBtns;

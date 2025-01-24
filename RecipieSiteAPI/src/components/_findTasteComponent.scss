@@ -5,10 +5,10 @@
   box-sizing: border-box;
   }
 
-#main {
+main {
   width: 100%;  
 
-  #card-container {
+  .card-container {
     display: flex;
     flex-wrap: wrap;
     height: 320px;

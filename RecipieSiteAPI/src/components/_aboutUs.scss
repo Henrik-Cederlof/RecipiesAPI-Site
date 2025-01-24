@@ -1,0 +1,48 @@
+@use './colors.scss' as color;
+@use './fonts.scss' as font;
+
+#main-about {
+    align-items: center;
+}
+
+#about-us {
+    display: flex;
+    height: auto;
+    width: 40%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    background: linear-gradient(0.25turn, #604F45AD, #755949AD, #4F423AAD);
+    color: color.$white-color;
+    border-top: 2px solid color.$border-color;
+    border-bottom: 2px solid color.$border-color;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.about-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-family: font.$slogan-font;
+    color: color.$white-color;
+    margin-bottom: 20px;
+}
+.about-text {
+    font-size: 1.5em;
+    color: color.$white-color;
+    margin-bottom: 20px;
+}
