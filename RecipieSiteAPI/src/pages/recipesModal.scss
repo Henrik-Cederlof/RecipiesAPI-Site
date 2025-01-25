@@ -1,28 +1,53 @@
 @use '../components/colors.scss' as color;
 
-.recipe-modal {
-    /* Använd flexbox för innehållet inuti modalen */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1000; 
+  }
 
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    height: auto;
-    max-height: 90vh; 
-    width: 80%; 
-    padding: 4%;
-    border-radius: 25px;
-    border: 5px solid color.$Off-white-color;
-    background-color: color.$primary-color;
-    z-index: 100;
+  .modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 
-    /* Justering av modal-innehållet */
+.modal-flag-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-flag {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 20px; 
+}
+
+
+  .modal-img-ins-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(213, 182, 144, 0.522);
+    border-radius: 15px;
+    padding: 20px;
+    overflow: scroll;
+
     .modal-img {
-        max-width: 30%;
+        float: left;
+        shape-outside: circle(50% at 50% 50%);
+        margin: 1rem;
+        max-width: 250px;
         height: auto;
         border-radius: 50%;
         border: 5px solid color.$Off-white-color;
@@ -30,8 +55,52 @@
 
     .modal-instructions {
         color: color.$Off-white-color;
-        font-size: 1.1em;
+        font-size: 1em;
+        text-align: left;
+        max-height: 25vw;
     }
+  }
+
+  .modal-ingredients-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    height: 100%;
+    background-color: rgba(213, 182, 144, 0.522);
+    border-radius: 15px;
+    padding: 20px;
+    overflow: scroll;
+    color: color.$Off-white-color;
+
+    p {
+        font-size: 1em;
+        text-align: left;
+    }
+
+}
+.ingredients-title {
+    font-size: 1.5em;
+    text-align: center;
+    color: color.$Off-white-color;
+    
+}
+  // Modalfönster
+  .recipe-modal {
+    background-color: color.$primary-color;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 90vh;
+    width: 65%;
+    max-width: 750px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    border: 2px solid color.$Off-white-color;
+  
     .modal-title {
         color: color.$Off-white-color;
         font-size: 2.5em;

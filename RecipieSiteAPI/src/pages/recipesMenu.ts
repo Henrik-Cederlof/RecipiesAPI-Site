@@ -7,7 +7,7 @@ const recipeCategories: RecipeMenu[] = [
     { id: 'breakfast', name: 'Breakfast', icon: '🍳' },
     { id: 'starter', name: 'Starter', icon: '🥗' },
     { id: 'side', name: 'Side', icon: '🍛' },
-    { id: 'miscellaneous', name: 'Miscellaneous', icon: '🍽️' },
+    { id: 'miscellaneous', name: 'Miscellaneous', icon: '🍴' },
     { id: 'beef', name: 'Beef', icon: '🥩' },
     { id: 'chicken', name: 'Chicken', icon: '🍗' },
     { id: 'lamb', name: 'Lamb', icon: '🐑' },
@@ -45,6 +45,8 @@ const createMealCards = async (category: string, recipesDisplayContainer: HTMLDi
     
     const meals: Meal[] = await getFullMealInfo(category);
 
+
+
     // Hitta ikonen för kategorin
     const selectedCategory = recipeCategories.find((menuItem: RecipeMenu) => menuItem.id === category);
     const categoryIcon = selectedCategory ? selectedCategory.icon : '';
@@ -63,18 +65,16 @@ const createMealCards = async (category: string, recipesDisplayContainer: HTMLDi
         // Eventlyssnare för att visa receptet
         const detailsBtn = mealCard.querySelector('.details-btn') as HTMLButtonElement;
         detailsBtn.addEventListener('click', async () => {
-            try {
+            
                 const mealDetails = await getMealDetails(meal.idMeal);
           
               if (mealDetails) {
                 // Hämta fullständig information
                 createModal(mealDetails);
               } else {
-                console.error('No meal details found for id:', meal.idMeal);
+                console.error('Inga recepet med ID:', meal.idMeal);
               }
-            } catch (error) {
-              console.error('Error fetching meal details:', error);
-            }
+                        
           });
 
         recipesDisplayContainer.appendChild(mealCard);

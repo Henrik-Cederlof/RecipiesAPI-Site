@@ -33,7 +33,6 @@ export const recipieComponent = () => {
 
     const searchBtn = document.createElement('button') as HTMLButtonElement;
     searchBtn.id = 'search-btn';
-    searchBtn.innerHTML = '🔍';
 
     searchContainer.appendChild(searchField);
     searchContainer.appendChild(searchBtn);
