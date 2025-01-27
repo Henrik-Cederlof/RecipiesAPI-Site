@@ -11,7 +11,6 @@ import { createHeroComponent } from './heroComponent';
 import { DomElements } from './domElements';
 import { aboutUsContainer } from './aboutUs';
 import { recipieComponent } from './pages/recipes';
-import  { getAllMeals, getFullMealInfo }  from './funtions/getRecipies';
 
 
 const header = DomElements.header;
@@ -34,7 +33,9 @@ if(header) {
 
 if (main) { 
   heroContainer.appendChild(createHeroComponent());  
-  cardContainer.appendChild(createCardComp(cardData))
+  createCardComp(cardData).then(card => {
+    cardContainer.appendChild(card);
+  });
 }
 if (aboutMain) {
   aboutMain.appendChild(aboutUsContainer);

@@ -1,16 +1,31 @@
 import { CardData } from "./types";
+import  getMeal  from "./funtions/getMeal";
 
 
-export const createCardComp = (data: CardData[]): HTMLDivElement => {
+
+export const createCardComp = async (data: CardData[]): Promise<HTMLDivElement> => {
   const cardContainer = document.createElement('section') as HTMLDivElement;
   cardContainer.classList.add('card-container');
 
-  cardContainer.innerHTML = data.map((item, index) => `
-    <div class="card" id="card-${index}">
-      <div class="card-image" style="background-image: url(${item.image})"></div>
+  const getMeals = data.map(async (item, index) => {
+    const meal = await getMeal();
+    return { 
+      ...item, 
+      image: meal.strMealThumb,
+      title: meal.strMeal,
+      descrtipion: meal.strInstructions,
+      index: index
+     };
+  });
+
+  const meals = await Promise.all(getMeals);
+
+  cardContainer.innerHTML = meals.map((meal) => `
+    <div class="card" id="card-${meal.index}">
+      <div class="card-image" style="background-image: url(${meal.image})"></div>
       <div class="card-content">
-        <h2 class="card-title">${item.title}</h2>
-        <p class="card-description">${item.descrtipion}</p>
+        <h2 class="card-title">${meal.title}</h2>
+        <p class="card-description">${meal.descrtipion}</p>
         <button class="card-button">Read More</button>
       </div>
     </div>
@@ -23,5 +38,8 @@ export const createCardComp = (data: CardData[]): HTMLDivElement => {
         console.log(`Card ${index} clicked`);
       });
     });
+
     return cardContainer;
 };
+
+
