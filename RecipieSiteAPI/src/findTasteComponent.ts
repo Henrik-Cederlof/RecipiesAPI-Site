@@ -22,13 +22,11 @@ export const createCardComp = async (data: CardData[]): Promise<HTMLDivElement> 
 
   cardContainer.innerHTML = meals.map((meal) => `
     <div class="card" id="card-${meal.index}">
-      <div class="card-image" style="background-image: url(${meal.image})"></div>
-      <div class="card-content">
-        <h2 class="card-title">${meal.title}</h2>
-        <p class="card-description">${meal.descrtipion}</p>
-        <button class="card-button">Read More</button>
-      </div>
-    </div>
+    <h2 class="card-title">${meal.title}</h2>
+    <div class="card-content">
+    <div class="card-image" style="background-image: url(${meal.image})"></div>
+        </div>
+        </div>
       `
     )
     .join('');

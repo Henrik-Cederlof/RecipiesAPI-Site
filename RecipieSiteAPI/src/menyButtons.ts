@@ -1,26 +1,28 @@
 import './style.scss';
+import { DomElements } from './domElements';
 
 type Button = {
   label: string,
   url: string,
-  action: () => void,
+ 
   className: string,
   dropdown?: boolean,
 }
 
 // Array med knappdata
 const buttons: Button[] = [
-  { label: 'index', url: '/', action: () => console.log('Home Clicked'), className: 'home' },
-  { label: 'MENU', url: '/', action: () => console.log('Menu Clicked'), className: 'menu', dropdown: true },
-  { label: 'ABOUT', url: '/', action: () => console.log('About Clicked'), className: 'about' },
-  { label: 'CONTACT', url: '/', action: () => console.log('Contact Clicked'), className: 'contact' },
+  { label: 'index', url: '/', className: 'home' },
+  { label: 'MENU', url: '/', className: 'menu', dropdown: true },
+  { label: 'ABOUT', url: '/',  className: 'about' },
+  { label: 'CONTACT', url: '/', className: 'contact' },
 ];
 
 // Funktion för att skapa knappar
 const createBtns = (): void => {  
-  const container = document.getElementById('menu-buttons');
+  const menuContainer = document.getElementById('menu-buttons');
+  const hamburgerContainer = document.createElement('div') as HTMLDivElement;
 
-  if (container) {
+  if (menuContainer) {
     buttons.forEach((button) => {
       const btn = document.createElement('button');
       btn.textContent = button.className.toUpperCase(); 
@@ -54,12 +56,25 @@ const createBtns = (): void => {
         });
       }
 
-      container.appendChild(btn);
+      menuContainer.appendChild(btn);
     });
 
+    const hamburgerBtn = document.createElement('div') as HTMLDivElement; 
+    hamburgerBtn.classList.add('hamburger-btn');
+    hamburgerBtn.innerHTML = `
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    `;
+    DomElements.header.appendChild(hamburgerBtn);
+    DomElements.header.appendChild(hamburgerContainer);
+
+    // Eventlyssnare för att visa/dölja menyn
+    hamburgerBtn.addEventListener('click', () => {
+      menuContainer.classList.toggle('show');
+    });
   }
 };
-
 
 
 export default createBtns;

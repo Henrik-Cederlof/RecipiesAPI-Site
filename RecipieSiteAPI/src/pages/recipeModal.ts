@@ -1,8 +1,6 @@
 import { Meal } from '../types';
 import  getMealIngredients  from '../funtions/getMealIngredients';
 import './recipesModal.scss';
-import { get } from 'http';
-import { getMealDetails } from '../funtions/getRecipies';
 import getFlag from '../funtions/getFlag';
 
 
@@ -12,10 +10,7 @@ const createModal = (mealDetails: Meal) => {
     const modal = document.createElement('div') as HTMLDivElement;
     modal.classList.add('recipe-modal');
     
-    // Skapa en Bakgrund
-    const modalBG = document.createElement('div') as HTMLDivElement;
-    modalBG.classList.add('modal-bg');
-    modal.appendChild(modalBG);
+   
 
     // Innehåll
     const modalContent = document.createElement('div') as HTMLDivElement;
@@ -31,21 +26,21 @@ const createModal = (mealDetails: Meal) => {
         <div class="recipe-modal">
         <div class="modal-header">
         <h2 class="modal-title">${mealDetails.strMeal}</h2>
-        <div class="modal-flag-container">
-            <img class="modal-flag" src="${countryFlag}" alt="Flag for ${mealDetails.strArea}">
-            </div>
+        <div class="modal-flag-container" title="${mealDetails.strArea}">
+        <img class="modal-flag"  src="${countryFlag}" alt="Flag for ${mealDetails.strArea}">
+        </div>
         </div>
 
         <div class="modal-img-ins-container">
         <img class="modal-img" src="${mealDetails.strMealThumb}" alt="${mealDetails.strMeal}">
         <p class="modal-instructions">${mealDetails.strInstructions}</p>
         </div>
-        <p class="ingredients-title">Ingredients:</p>
+        <p class="ingredients-title">INGREDIENTS:</p>
         <ul class="modal-ingredients-list">
         ${ingredientsList}
         </ul>
-
-        <button class="close-modal-btn">X</button>
+        
+        <button class="close-modal-btn">Close</button>
         </div>
     </div>
 `;

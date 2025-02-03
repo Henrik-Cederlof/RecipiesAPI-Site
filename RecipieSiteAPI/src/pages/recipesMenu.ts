@@ -1,24 +1,9 @@
 import {  RecipeMenu, Meal } from '../types';
 import { getFullMealInfo, getMealDetails } from '../funtions/getRecipies';
 import createModal from './recipeModal';
+import  recipeCategories  from '../misc/recipeMenu';
 
 
-const recipeCategories: RecipeMenu[] = [
-    { id: 'breakfast', name: 'Breakfast', icon: '🍳' },
-    { id: 'starter', name: 'Starter', icon: '🥗' },
-    { id: 'side', name: 'Side', icon: '🍛' },
-    { id: 'miscellaneous', name: 'Miscellaneous', icon: '🍴' },
-    { id: 'beef', name: 'Beef', icon: '🥩' },
-    { id: 'chicken', name: 'Chicken', icon: '🍗' },
-    { id: 'lamb', name: 'Lamb', icon: '🐑' },
-    { id: 'pork', name: 'Pork', icon: '🐽' },
-    { id: 'goat', name: 'Goat', icon: '🐐' },
-    { id: 'pasta', name: 'Pasta', icon: '🍝' },
-    { id: 'seafood', name: 'Seafood', icon: '🐟' },
-    { id: 'vegan', name: 'Vegan', icon: '🌱' },
-    { id: 'vegetarian', name: 'Vegetarian', icon: '🥕' },
-    { id: 'dessert', name: 'Dessert', icon: '🍰' },
-];
 export const recipeMenu = (recipesDisplayContainer: HTMLDivElement) => {
     const menu = document.createElement('div') as HTMLDivElement;
     menu.id = 'menu';
@@ -41,11 +26,8 @@ export const recipeMenu = (recipesDisplayContainer: HTMLDivElement) => {
 };
 
 const createMealCards = async (category: string, recipesDisplayContainer: HTMLDivElement) => { 
-    recipesDisplayContainer.innerHTML = '';
-    
+    recipesDisplayContainer.innerHTML = '';    
     const meals: Meal[] = await getFullMealInfo(category);
-
-
 
     // Hitta ikonen för kategorin
     const selectedCategory = recipeCategories.find((menuItem: RecipeMenu) => menuItem.id === category);
@@ -58,13 +40,11 @@ const createMealCards = async (category: string, recipesDisplayContainer: HTMLDi
 
         mealCard.innerHTML = `
         <img class="meal-img" src="${meal.strMealThumb}" alt="${meal.strMeal}">
-        <h2 class="meal-title">${meal.strMeal}</h2>
-        <button class="details-btn" data-id="${meal.idMeal}">Show Recipe</button>
+        <h2 class="meal-title">${meal.strMeal.slice(0,25)}</h2>
         <p class="meal-category">${categoryIcon}</p>
         `;
         // Eventlyssnare för att visa receptet
-        const detailsBtn = mealCard.querySelector('.details-btn') as HTMLButtonElement;
-        detailsBtn.addEventListener('click', async () => {
+        mealCard.addEventListener('click', async () => {
             
                 const mealDetails = await getMealDetails(meal.idMeal);
           

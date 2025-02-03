@@ -7,7 +7,7 @@ const getFlag = (strArea: string): string => {
         "Croatian": "HR",
         "Dutch": "NL",
         "Egyptian": "EG",
-        "Filipino": "FP",
+        "Philippines": "FP",
         "French": "FR",
         "Greek": "GR",
         "Indian": "IN",
@@ -27,10 +27,11 @@ const getFlag = (strArea: string): string => {
         "Tunisian": "TN",
         "Turkish": "TR",
         "Ukrainian": "UA",
-        "Vietnamese": "VN"
+        "Vietnamese": "VN",
+        "Unknown": "UN"
     };
     const countryCode = flags[strArea];
-    return countryCode ? `https://flagsapi.com/${countryCode}/flat/64.png` : '';
+    return countryCode ? `https://flagsapi.com/${countryCode}/shiny/64.png` : '';
 };
 
 export default getFlag;

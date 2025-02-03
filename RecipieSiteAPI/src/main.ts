@@ -10,7 +10,7 @@ import { createCardComp }  from './findTasteComponent';
 import { createHeroComponent } from './heroComponent';
 import { DomElements } from './domElements';
 import { aboutUsContainer } from './aboutUs';
-import { recipieComponent } from './pages/recipes';
+import { recipeComponent } from './pages/recipes';
 
 
 const header = DomElements.header;
@@ -42,7 +42,7 @@ if (aboutMain) {
 }
 
 if (recipesMain) {
-  recipesMain.appendChild(recipieComponent());
+  recipesMain.appendChild(recipeComponent());
 }
 
 

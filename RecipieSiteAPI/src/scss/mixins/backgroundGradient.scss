@@ -1,0 +1,7 @@
+@mixin background($background, $position: center, $size: cover, $repeat: no-repeat) {
+    background: rgb(179,159,148);
+    background: linear-gradient(45deg, rgb(71, 60, 54) 8%, rgba(120,97,84,1) 53%);
+    background-size: $size;
+    background-repeat: $repeat;
+  };
+  
