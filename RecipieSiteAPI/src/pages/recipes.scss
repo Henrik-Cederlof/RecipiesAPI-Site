@@ -15,23 +15,15 @@
     align-items: center;
     width: 100%;
 }
-#menu-container {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: start;
-    width: 100%;
-}
 
 #menu-container {
+    display: flex;
+    margin-top: 3%;
     z-index: 100;
     position: relative;
     height: 80vh;
     width: auto;
-    min-width: 80%;
-    display: flex;
     flex-direction: row;
-    justify-content: start;
     color: color.$white-color;
     overflow: scroll;
     scroll-behavior: auto;
@@ -39,8 +31,7 @@
     
     @media screen and (max-width: 568px) {
         flex-direction: column;
-        height: auto;
-        
+        height: auto;       
     }
 
     #menu {
@@ -52,6 +43,7 @@
         width: 15cap;
         font-size: 1.5em;
         z-index: 10;
+        left: 0;
    
         .menu-button {
             display: flex;
@@ -66,17 +58,14 @@
             scale: 1.1;
 
         }
-        @media screen and (max-width: 568px) {
-            
+        @media screen and (max-width: 568px) {         
             align-self: center;
             font-size: 1.2em;
             width: auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             padding: 20px 0px 20px 0px;
-            border-bottom: 2px solid color.$Off-white-color;
-
-            
+            border-bottom: 2px solid color.$Off-white-color;       
         }
     }  
     .menu-button:active {
@@ -84,9 +73,11 @@
         color: rgb(255, 255, 255);
     }   
 }
+
 #recipes-display {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
+    min-width: 40vw;
     gap: 10px;
     margin: 10px;
     justify-content: center;
@@ -101,6 +92,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
 .meal-card {
     display: flex;
     flex-direction: column;
@@ -148,7 +140,39 @@
     cursor: pointer;
 }
 
-  
+#favorites {
+    display: flex;
+    flex-direction: column;
+    max-width: 10vw;
+    gap: 10px;
+    top: 0;
+    border-radius: 15px;
+    overflow: scroll;
+
+
+    h3 {
+        color: color.$Off-white-color;
+        text-align: center;
+        margin: 10px;
+        border-bottom: 2px solid color.$Off-white-color;
+    }
+    .meal-img {
+        height: 100px;
+        display: flex;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: color.$Off-white-color;
+        align-self: flex-end;
+        border-radius: 15px;
+    }
+    .meal-img:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+    .favorite-card {
+        
+    }
+}
 
    
 

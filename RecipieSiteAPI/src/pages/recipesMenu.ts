@@ -42,6 +42,7 @@ const createMealCards = async (category: string, recipesDisplayContainer: HTMLDi
         <img class="meal-img" src="${meal.strMealThumb}" alt="${meal.strMeal}">
         <h2 class="meal-title">${meal.strMeal.slice(0,25)}</h2>
         <p class="meal-category">${categoryIcon}</p>
+
         `;
         // Eventlyssnare för att visa receptet
         mealCard.addEventListener('click', async () => {
@@ -59,6 +60,8 @@ const createMealCards = async (category: string, recipesDisplayContainer: HTMLDi
 
         recipesDisplayContainer.appendChild(mealCard);
     });
+
+
 };
 
 export default recipeMenu;

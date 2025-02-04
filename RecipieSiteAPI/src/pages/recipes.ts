@@ -1,6 +1,7 @@
 import { recipeMenu } from './recipesMenu';
 import { RecipeMenu } from '../types';
 import { getMealDetails } from '../funtions/getRecipies';
+import { getFavs } from '../funtions/favoritesHandling';
 import createModal from './recipeModal';
 import recipeCategories from '../misc/recipeMenu';
 import  createSearchBar  from '../components/searchBar/searchBar';
@@ -20,6 +21,8 @@ export const recipeComponent = () => {
     // Container för menyn
     const menu = document.createElement('div') as HTMLDivElement;
     menu.id = 'menu';
+    const favorites = document.createElement('div') as HTMLDivElement;
+    favorites.id = 'favorites';
 
     // Container för recepten
     const recipesDisplayContainer = document.createElement('div') as HTMLDivElement;
@@ -28,6 +31,7 @@ export const recipeComponent = () => {
     // Lägg till menyn och recepten i menu-container
     menuContainer.appendChild(recipeMenu(recipesDisplayContainer));
     menuContainer.appendChild(recipesDisplayContainer);
+    menuContainer.appendChild(favorites);
     createSearchBar(mainContainer);
  
     searchBtn.addEventListener('click', () => {
@@ -129,6 +133,7 @@ export const recipeComponent = () => {
             <p class="meal-category">${categoryIcon}</p>
             `;
 
+        
             // Eventlyssnare för att visa receptet
             mealCard.addEventListener('click', async () => {
                 createModal(mealDetails);
@@ -141,9 +146,31 @@ export const recipeComponent = () => {
         }
     };
 
-
-
-
-        return mainContainer;
+    return mainContainer;
 };
 
+
+export const displayFavorites = () => {
+     const favoritesContainer = document.getElementById('favorites') as HTMLDivElement;
+        favoritesContainer.innerHTML = '<h3>Favorites</h3>';
+        const favoritesList = getFavs();
+        if(favoritesList.length === 0) {
+            favoritesContainer.innerHTML = '<p>No favorites yet</p>';
+            return;
+        }
+        favoritesList.forEach((meal) => {
+            const mealCard = document.createElement('div') as HTMLDivElement;
+            mealCard.classList.add('favorite-card');
+            mealCard.innerHTML = `
+            <img class="meal-img" src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            `;
+            mealCard.addEventListener('click', () => {
+                createModal(meal);
+            });
+            favoritesContainer.appendChild(mealCard);
+        });
+        
+    };
+
+// Lägg till favoriter
+document.addEventListener("DOMContentLoaded", displayFavorites);

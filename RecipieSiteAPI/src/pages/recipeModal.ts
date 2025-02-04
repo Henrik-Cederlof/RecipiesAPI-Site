@@ -2,6 +2,8 @@ import { Meal } from '../types';
 import  getMealIngredients  from '../funtions/getMealIngredients';
 import './recipesModal.scss';
 import getFlag from '../funtions/getFlag';
+import { toggleFavItem, isFav } from '../funtions/favoritesHandling';
+import {displayFavorites} from './recipes';
 
 
 const createModal = (mealDetails: Meal) => {
@@ -9,12 +11,15 @@ const createModal = (mealDetails: Meal) => {
     // Skapa modal
     const modal = document.createElement('div') as HTMLDivElement;
     modal.classList.add('recipe-modal');
-    
-   
+
+    //Kontrollera om receptet är favorit
+    const isFavorite = isFav(mealDetails.idMeal);
+    const favoriteIcon = isFavorite ? '⭐' : '☆';
 
     // Innehåll
     const modalContent = document.createElement('div') as HTMLDivElement;
     modalContent.classList.add('modal-content');
+
     // Ingredienser
     const ingredientsList = getMealIngredients(mealDetails)
     .map(ing => `<li>${ing.measure} ${ing.ingredient}</li>`)
@@ -27,6 +32,7 @@ const createModal = (mealDetails: Meal) => {
         <div class="modal-header">
         <h2 class="modal-title">${mealDetails.strMeal}</h2>
         <div class="modal-flag-container" title="${mealDetails.strArea}">
+        <button class="favorite-btn">${favoriteIcon}</button>
         <img class="modal-flag"  src="${countryFlag}" alt="Flag for ${mealDetails.strArea}">
         </div>
         </div>
@@ -41,9 +47,9 @@ const createModal = (mealDetails: Meal) => {
         </ul>
         
         <button class="close-modal-btn">Close</button>
+
         </div>
-    </div>
-`;
+    </div>`;
 
     //Lägg till innehållet i modalen
     modal.appendChild(modalContent);
@@ -52,11 +58,16 @@ const createModal = (mealDetails: Meal) => {
 
     // Stäng modalen
     const closeModalBtn = document.querySelector('.close-modal-btn') as HTMLButtonElement;
-    closeModalBtn.addEventListener('click', () => {
-        modal.remove();
-    });
-   
+    closeModalBtn.addEventListener('click', () => modal.remove());
 
-};
+    const favoriteBtn = document.querySelector('.favorite-btn') as HTMLButtonElement;
+    favoriteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const added = toggleFavItem(mealDetails);
+        favoriteBtn.textContent = added ? '⭐' : '☆';
+        displayFavorites();
+    });
+
+}
 
 export default createModal;

@@ -86,3 +86,11 @@ export type Category = {
     name: string;
     icon: string;
   }
+
+  export type FavoriteRecipe = {
+    id: string;
+    title: string;
+    image: string;
+    category: string;
+    description: string;
+  }
